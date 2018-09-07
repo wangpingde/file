@@ -1,6 +1,6 @@
-package com.hoperun.qkl.fileserver.controller;
+package com.hoperun.qkl.fileserve.controller;
 
-import com.hoperun.qkl.fileserver.service.IFileService;
+import com.hoperun.qkl.fileserve.service.IFileService;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hoperun.qkl.fileserver.util.FileUtils.deSerialize;
-import static com.hoperun.qkl.fileserver.util.FileUtils.mediaType;
-import static com.hoperun.qkl.fileserver.util.Md5util.getMd5;
+import static com.hoperun.qkl.fileserve.util.FileUtils.deSerialize;
+import static com.hoperun.qkl.fileserve.util.FileUtils.mediaType;
+import static com.hoperun.qkl.fileserve.util.Md5util.getMd5;
 
 @RestController
 @RequestMapping("/api/file")

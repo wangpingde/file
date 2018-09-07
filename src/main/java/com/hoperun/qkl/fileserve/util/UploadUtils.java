@@ -1,9 +1,9 @@
-package com.hoperun.qkl.fileserver.util;
+package com.hoperun.qkl.fileserve.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hoperun.qkl.fileserver.util.FileUtils.generateFileName;
+import static com.hoperun.qkl.fileserve.util.FileUtils.generateFileName;
 
 /**
  * 分块上传工具类

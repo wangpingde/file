@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver;
+package com.hoperun.qkl.fileserve;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

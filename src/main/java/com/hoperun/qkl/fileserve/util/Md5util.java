@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver.util;
+package com.hoperun.qkl.fileserve.util;
 
 import org.springframework.web.multipart.MultipartFile;
 

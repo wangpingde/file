@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver.util;
+package com.hoperun.qkl.fileserve.util;
 
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;

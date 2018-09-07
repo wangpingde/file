@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver.config;
+package com.hoperun.qkl.fileserve.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

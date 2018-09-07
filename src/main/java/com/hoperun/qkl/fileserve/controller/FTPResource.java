@@ -1,6 +1,6 @@
-package com.hoperun.qkl.fileserver.controller;
+package com.hoperun.qkl.fileserve.controller;
 
-import com.hoperun.qkl.fileserver.service.impl.FTPServiceImpl;
+import com.hoperun.qkl.fileserve.service.impl.FTPServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-import static com.hoperun.qkl.fileserver.util.Md5util.getMd5;
+import static com.hoperun.qkl.fileserve.util.Md5util.getMd5;
 
 @RestController
 @RequestMapping("/api/ftp")

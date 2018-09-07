@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver.service;
+package com.hoperun.qkl.fileserve.service;
 
 import com.mongodb.gridfs.GridFSDBFile;
 import org.springframework.data.mongodb.core.query.Query;

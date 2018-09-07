@@ -1,15 +1,15 @@
-package com.hoperun.qkl.fileserver.service.impl;
+package com.hoperun.qkl.fileserve.service.impl;
 
 
-import com.hoperun.qkl.fileserver.config.UploadConfig;
-import com.hoperun.qkl.fileserver.util.FileUtils;
+import com.hoperun.qkl.fileserve.config.UploadConfig;
+import com.hoperun.qkl.fileserve.util.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-import static com.hoperun.qkl.fileserver.util.FileUtils.generateFileName;
-import static com.hoperun.qkl.fileserver.util.UploadUtils.*;
+import static com.hoperun.qkl.fileserve.util.FileUtils.generateFileName;
+import static com.hoperun.qkl.fileserve.util.UploadUtils.*;
 
 @Service
 public class FTPServiceImpl {

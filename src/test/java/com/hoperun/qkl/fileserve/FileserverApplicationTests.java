@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver;
+package com.hoperun.qkl.fileserve;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

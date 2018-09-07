@@ -1,4 +1,4 @@
-package com.hoperun.qkl.fileserver.constant;
+package com.hoperun.qkl.fileserve.constant;
 
 
 /**

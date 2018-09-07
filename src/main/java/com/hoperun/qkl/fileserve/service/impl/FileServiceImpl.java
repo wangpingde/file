@@ -1,6 +1,6 @@
-package com.hoperun.qkl.fileserver.service.impl;
+package com.hoperun.qkl.fileserve.service.impl;
 
-import com.hoperun.qkl.fileserver.service.IFileService;
+import com.hoperun.qkl.fileserve.service.IFileService;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
 import org.springframework.beans.factory.annotation.Autowired;
