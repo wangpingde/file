@@ -40,7 +40,7 @@ public class FTPServiceImpl implements IFTPService {
         fileInfo.setName(name);
         fileInfo.setEtx(file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
         fileInfo.setServiceType(ServiceType.FTP);
-        fileInfo.setUploadDate(Long.parseLong(String.valueOf(LocalTime.now().getSecond())));
+        fileInfo.setUploadDate(System.currentTimeMillis()/1000);
         infoRepository.save(fileInfo);
     }
 
