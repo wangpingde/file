@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hoperun.qkl</groupId>
-    <artifactId>fileserver</artifactId>
+    <artifactId>file</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>fileserver</name>
+    <name>file</name>
     <description>project for File Server</description>
 
     <parent>
