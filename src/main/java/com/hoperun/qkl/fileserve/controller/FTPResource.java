@@ -1,5 +1,6 @@
 package com.hoperun.qkl.fileserve.controller;
 
+import com.hoperun.qkl.fileserve.service.IFTPService;
 import com.hoperun.qkl.fileserve.service.impl.FTPServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -17,13 +18,13 @@ import static com.hoperun.qkl.fileserve.util.Md5util.getMd5;
 public class FTPResource {
 
     @Autowired
-    private FTPServiceImpl ftpService;
+    private IFTPService ftpService;
 
     @PostMapping("file")
     public void upload(String name,
                        String md5,
                        MultipartFile file) throws IOException {
-        if(!StringUtils.isEmpty(md5)){
+        if(StringUtils.isEmpty(md5)){
             md5 = getMd5(file);
         }
         ftpService.upload(name, md5,file);

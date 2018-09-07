@@ -2,19 +2,26 @@ package com.hoperun.qkl.fileserve.service.impl;
 
 
 import com.hoperun.qkl.fileserve.config.UploadConfig;
+import com.hoperun.qkl.fileserve.constant.ServiceType;
+import com.hoperun.qkl.fileserve.domain.FileInfo;
+import com.hoperun.qkl.fileserve.repository.FileInfoRepository;
+import com.hoperun.qkl.fileserve.service.IFTPService;
 import com.hoperun.qkl.fileserve.util.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 import static com.hoperun.qkl.fileserve.util.FileUtils.generateFileName;
 import static com.hoperun.qkl.fileserve.util.UploadUtils.*;
 
 @Service
-public class FTPServiceImpl {
+public class FTPServiceImpl implements IFTPService {
 
-
+    @Autowired
+    private FileInfoRepository infoRepository;
     /**
      * 上传文件
      * @param md5
@@ -23,9 +30,18 @@ public class FTPServiceImpl {
     public void upload(String name,
                        String md5,
                        MultipartFile file) throws IOException {
+        String id = generateFileName();
         String path = UploadConfig.path + generateFileName();
         FileUtils.write(path, file.getInputStream());
-        //fileDao.save(new File(name, md5, path, new Date()));
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setId(id);
+        fileInfo.setFileId(id);
+        fileInfo.setMd5(md5);
+        fileInfo.setName(name);
+        fileInfo.setEtx(file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
+        fileInfo.setServiceType(ServiceType.FTP);
+        fileInfo.setUploadDate(Long.parseLong(String.valueOf(LocalTime.now().getSecond())));
+        infoRepository.save(fileInfo);
     }
 
     /**
