@@ -42,11 +42,11 @@ public class LogUtils {
         StringBuilder builder = new StringBuilder();
         if (args.length > 0) {
             for (Object o : args) {
-                builder.append(o);
+                builder.append(o+",");
             }
         }
 
         log.error("method: {},param:{},errorRow:{},something:{}",
-                signature, builder.toString(), lineNumber, ex.toString());
+                signature, builder.substring(1).toString(), lineNumber, ex.toString());
     }
 }
