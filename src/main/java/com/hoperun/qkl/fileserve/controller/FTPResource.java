@@ -20,7 +20,7 @@ public class FTPResource {
     @Autowired
     private IFTPService ftpService;
 
-    @PostMapping("file")
+    @PostMapping("/file")
     public void upload(String name, String md5, MultipartFile file) throws IOException {
         if(StringUtils.isEmpty(md5)){
             md5 = getMd5(file);
@@ -30,6 +30,8 @@ public class FTPResource {
         }
         ftpService.upload(name, md5,file);
     }
+
+
 
     @PostMapping("/bigFile")
     public void upload(String name, String md5, Long size, Integer chunks, Integer chunk, MultipartFile file) throws IOException {
