@@ -9,9 +9,11 @@ import com.hoperun.qkl.fileserve.service.IFTPService;
 import com.hoperun.qkl.fileserve.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 import static com.hoperun.qkl.fileserve.util.FileUtils.generateFileName;
 import static com.hoperun.qkl.fileserve.util.UploadUtils.*;
@@ -63,7 +65,15 @@ public class FTPServiceImpl implements IFTPService {
         addChunk(md5,chunk);
         if (isUploaded(md5)) {
             removeKey(md5);
-           //fileDao.save(new File(name, md5,UploadConfig.path + fileName, new Date()));
+            FileInfo fileInfo = new FileInfo();
+            fileInfo.setId(fileName);
+            fileInfo.setFileId(fileName);
+            fileInfo.setMd5(md5);
+            fileInfo.setName(name);
+            fileInfo.setEtx(file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
+            fileInfo.setServiceType(ServiceType.FTP);
+            fileInfo.setUploadDate(System.currentTimeMillis()/1000);
+            infoRepository.save(fileInfo);
         }
     }
 
@@ -73,9 +83,7 @@ public class FTPServiceImpl implements IFTPService {
      * @return
      */
     public boolean checkMd5(String md5) {
-       /* File file = new File();
-        file.setMd5(md5);
-        return fileDao.getByFile(file) == null;*/
-        return false;
+        List<FileInfo> allByMd5 = infoRepository.findAllByMd5(md5);
+        return !CollectionUtils.isEmpty(allByMd5);
     }
 }
