@@ -1,6 +1,9 @@
 package com.hoperun.qkl.fileserve.service;
 
+import com.hoperun.qkl.fileserve.domain.FileInfo;
 import com.mongodb.gridfs.GridFSDBFile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.io.InputStream;
@@ -16,5 +19,7 @@ public interface IFileService {
     GridFSDBFile queryFileWithQuery(Query query);
 
     void deleteFile(String fileId);
+
+    Page<FileInfo> listFiles(Pageable pageable, Query query);
 
 }

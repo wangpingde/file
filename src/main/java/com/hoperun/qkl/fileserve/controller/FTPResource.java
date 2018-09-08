@@ -25,6 +25,9 @@ public class FTPResource {
         if(StringUtils.isEmpty(md5)){
             md5 = getMd5(file);
         }
+        if(StringUtils.isEmpty(name)){
+            name = file.getOriginalFilename();
+        }
         ftpService.upload(name, md5,file);
     }
 

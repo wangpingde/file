@@ -1,7 +1,12 @@
 package com.hoperun.qkl.fileserve.controller;
 
+import com.hoperun.qkl.fileserve.domain.FileInfo;
 import com.hoperun.qkl.fileserve.service.IFileService;
 import com.mongodb.gridfs.GridFSDBFile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +30,21 @@ public class FileResource {
 
     @Resource
     private IFileService iFileService;
+
+    @GetMapping
+    public ResponseEntity<?> listFiles(Pageable page,FileInfo fileInfo) {
+        try {
+            if(page == null){
+                page = new PageRequest(0, 10);
+            }
+            Query query = new Query();
+            Page<FileInfo> fileInfos = iFileService.listFiles(page,query);
+            return new ResponseEntity(fileInfos,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> upload(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
