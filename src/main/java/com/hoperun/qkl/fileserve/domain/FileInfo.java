@@ -22,6 +22,8 @@ public class FileInfo implements Serializable {
 
     private String etx;
 
+    private String login;
+
     private Long uploadDate;
 
     private ServiceType serviceType;
@@ -66,6 +68,14 @@ public class FileInfo implements Serializable {
 
     public void setEtx(String etx) {
         this.etx = etx;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Long getUploadDate() {

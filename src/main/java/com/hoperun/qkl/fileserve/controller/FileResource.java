@@ -3,6 +3,7 @@ package com.hoperun.qkl.fileserve.controller;
 import com.hoperun.qkl.fileserve.constant.ServiceType;
 import com.hoperun.qkl.fileserve.domain.FileInfo;
 import com.hoperun.qkl.fileserve.repository.FileInfoRepository;
+import com.hoperun.qkl.fileserve.service.BasicCurrentUser;
 import com.hoperun.qkl.fileserve.service.IFileService;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ public class FileResource {
     @Autowired
     private FileInfoRepository infoRepository;
 
+    @Autowired
+    private BasicCurrentUser basicCurrentUser;
+
     @GetMapping
     public ResponseEntity<?> listFiles(Pageable page,FileInfo fileInfo) {
         try {
@@ -70,9 +74,11 @@ public class FileResource {
             map.put("fileName", fileName);
 
             FileInfo fileInfo = new FileInfo();
+            System.out.println();
             fileInfo.setId(UUID.randomUUID().toString());
             fileInfo.setFileId(map.get("fileId"));
             fileInfo.setMd5(getMd5(file));
+            fileInfo.setLogin(basicCurrentUser.getCurrentUser().getLogin());
             fileInfo.setName(file.getOriginalFilename());
             fileInfo.setEtx(file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
             fileInfo.setServiceType(ServiceType.FTP);

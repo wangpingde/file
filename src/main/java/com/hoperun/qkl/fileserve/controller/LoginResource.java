@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,7 +45,7 @@ public class LoginResource {
             String token = jwtTokenUtil.generateToken(loginVM.getUsername());
             response.addHeader(tokenHeader,"Bearer "+token);
             return new ResponseEntity<>(userRepository.findByLogin(loginVM.getUsername()),HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (BadCredentialsException e) {
             e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

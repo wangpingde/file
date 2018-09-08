@@ -10,8 +10,6 @@ public class ApplicationInfo implements Serializable {
 
     private String subBusinessLine;
 
-    private String login;
-
     private String version;
 
     private String busCode;
@@ -38,14 +36,6 @@ public class ApplicationInfo implements Serializable {
 
     public void setSubBusinessLine(String subBusinessLine) {
         this.subBusinessLine = subBusinessLine;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getBusCode() {
