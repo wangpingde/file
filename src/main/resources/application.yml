@@ -1,0 +1,23 @@
+server:
+    port: 8080
+file:
+  serve: D:/temp/
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mongo
+  http:
+    multipart:
+      max-request-size: 10000MB
+      max-file-size: 100000MB
+  profiles:
+    active: dev
+logging:
+  config: classpath:logback-roncoo.xml
+jwt:
+   header: Authorization
+   secret: mySecret
+   expiration: 86400
+security:
+  basic:
+    enabled: false
