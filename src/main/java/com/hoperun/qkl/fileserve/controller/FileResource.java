@@ -1,8 +1,11 @@
 package com.hoperun.qkl.fileserve.controller;
 
+import com.hoperun.qkl.fileserve.constant.ServiceType;
 import com.hoperun.qkl.fileserve.domain.FileInfo;
+import com.hoperun.qkl.fileserve.repository.FileInfoRepository;
 import com.hoperun.qkl.fileserve.service.IFileService;
 import com.mongodb.gridfs.GridFSDBFile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.hoperun.qkl.fileserve.util.FileUtils.deSerialize;
 import static com.hoperun.qkl.fileserve.util.FileUtils.mediaType;
@@ -30,6 +34,9 @@ public class FileResource {
 
     @Resource
     private IFileService iFileService;
+
+    @Autowired
+    private FileInfoRepository infoRepository;
 
     @GetMapping
     public ResponseEntity<?> listFiles(Pageable page,FileInfo fileInfo) {
@@ -61,6 +68,18 @@ public class FileResource {
 
             map.put("fileId", fileId);
             map.put("fileName", fileName);
+
+            FileInfo fileInfo = new FileInfo();
+            fileInfo.setId(UUID.randomUUID().toString());
+            fileInfo.setFileId(map.get("fileId"));
+            fileInfo.setMd5(getMd5(file));
+            fileInfo.setName(file.getOriginalFilename());
+            fileInfo.setEtx(file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
+            fileInfo.setServiceType(ServiceType.FTP);
+            fileInfo.setUploadDate(System.currentTimeMillis()/1000);
+            infoRepository.save(fileInfo);
+
+
             return new ResponseEntity(map,HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

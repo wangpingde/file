@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import static com.hoperun.qkl.fileserve.util.FileUtils.generateFileName;
 import static com.hoperun.qkl.fileserve.util.UploadUtils.*;
@@ -35,7 +36,7 @@ public class FTPServiceImpl implements IFTPService {
         String path = UploadConfig.path + generateFileName();
         FileUtils.write(path, file.getInputStream());
         FileInfo fileInfo = new FileInfo();
-        fileInfo.setId(id);
+        fileInfo.setId(UUID.randomUUID().toString());
         fileInfo.setFileId(id);
         fileInfo.setMd5(md5);
         fileInfo.setName(name);
