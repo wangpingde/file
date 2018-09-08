@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import static com.hoperun.qkl.fileserve.util.LogUtils.logToFile;
 
 @Aspect
+@Component
 @Slf4j
 public class LogAspect {
 
@@ -17,7 +18,7 @@ public class LogAspect {
      * @param joinPoint
      * @param ex
      */
-    @AfterThrowing(throwing = "ex", pointcut = "execution(* com.hoperun.qkl.fileserve.*.*.*(..))")
+    @AfterThrowing(throwing = "ex", pointcut = "execution(* com.hoperun.qkl.fileserve.service.impl.*.*(..))")
     public void logPoint(JoinPoint joinPoint, Throwable ex) {
         logToFile(joinPoint,ex);
     }
