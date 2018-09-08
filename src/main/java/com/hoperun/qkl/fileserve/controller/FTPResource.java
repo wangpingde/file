@@ -21,9 +21,7 @@ public class FTPResource {
     private IFTPService ftpService;
 
     @PostMapping("file")
-    public void upload(String name,
-                       String md5,
-                       MultipartFile file) throws IOException {
+    public void upload(String name, String md5, MultipartFile file) throws IOException {
         if(StringUtils.isEmpty(md5)){
             md5 = getMd5(file);
         }
@@ -31,12 +29,7 @@ public class FTPResource {
     }
 
     @PostMapping("/bigFile")
-    public void upload(String name,
-                       String md5,
-                       Long size,
-                       Integer chunks,
-                       Integer chunk,
-                       MultipartFile file) throws IOException {
+    public void upload(String name, String md5, Long size, Integer chunks, Integer chunk, MultipartFile file) throws IOException {
         if (chunks != null && chunks != 0) {
             ftpService.uploadWithBlock(name, md5,size,chunks,chunk,file);
         } else {
