@@ -20,11 +20,11 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByLogin(login);
-        UserBO userBO = new UserBO();
-        BeanUtils.copyProperties(user,userBO);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with login '%s'.", login));
         } else {
+            UserBO userBO = new UserBO();
+            BeanUtils.copyProperties(user,userBO);
             return  userBO;
         }
     }

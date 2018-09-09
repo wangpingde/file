@@ -13,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,10 +46,12 @@ public class LoginResource {
             String token = jwtTokenUtil.generateToken(loginVM.getUsername());
             response.addHeader(tokenHeader,"Bearer "+token);
             return new ResponseEntity<>(userRepository.findByLogin(loginVM.getUsername()),HttpStatus.OK);
-        } catch (BadCredentialsException e) {
-            e.printStackTrace();
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
+        } catch (BadCredentialsException e){
+            return new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
