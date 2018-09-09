@@ -20,4 +20,4 @@ jwt:
    expiration: 86400
 security:
   basic:
-    enabled: false
+    enabled: true
