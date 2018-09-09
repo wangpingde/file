@@ -52,7 +52,7 @@ public class UserBO implements UserDetails {
         List<GrantedAuthority> auths = new ArrayList<>();
         Set<UserRole> roles = this.getRoles();
         for (UserRole role : roles) {
-            auths.add(new SimpleGrantedAuthority(role.getName()));
+            auths.add(new SimpleGrantedAuthority(role.getCode()));
         }
         return auths;
 
