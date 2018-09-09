@@ -14,6 +14,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+       hibernate.use-new-id-generator-mappings: true
+       hibernate.cache.use_second_level_cache: false
+       hibernate.cache.use_query_cache: false
+       hibernate.cache.use_minimal_puts: true
+       hibernate.generate_statistics: false
+
 
 
 
