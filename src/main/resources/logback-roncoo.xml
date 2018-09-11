@@ -16,7 +16,7 @@
 			</encoder>
 		</appender>
 		
-		<logger name="com.roncoo.education" level="debug"/>
+		<logger name="com.hoperun.qkl.fileserve" level="debug"/>
 		<logger name="org.springframework.jdbc.core.JdbcTemplate" level="debug"/>
 
 		<root level="info">
