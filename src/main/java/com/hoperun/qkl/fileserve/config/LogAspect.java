@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 import static com.hoperun.qkl.fileserve.util.LogUtils.logToFile;
 
-@Aspect
+/*@Aspect
 @Component
-@Slf4j
+@Slf4j*/
 public class LogAspect {
 
     /**
